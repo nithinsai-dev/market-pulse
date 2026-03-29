@@ -1,0 +1,18 @@
+<%- include("partials/header") %>
+    <div class="container">
+        <div class="form">
+            <form action="/price" method="POST">
+                <label for="type"><strong>Select type:</strong></label>
+                <select name="type" id="type">
+                    <option value="crypto">Crypto</option>
+                    <option value="stock">Stock</option>
+                </select><br /><br />
+                <label for="symbol"><strong>Enter stock name:</strong></label>
+                <input type="text" id="symbol" name="symbol" required> <br /><br />
+
+                <button type="submit">Get Price</button>
+
+            </form>
+        </div>
+    </div>
+    <%- include("partials/footer") %>

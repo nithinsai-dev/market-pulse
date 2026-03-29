@@ -1,0 +1,20 @@
+<%- include("partials/header") %>
+    <div class="price-info">
+        <h2>Price Information:</h2>
+        <p><strong>Symbol : </strong>
+            <%= symbol %>
+        </p>
+        <p><strong>Price : </strong>
+            <%= price %>
+        </p>
+        <p><strong>Change percentage : </strong>
+            <%= changePercentage %>
+        </p>
+
+        <% if (locals.error) { %>
+            <p style="color:red">
+                <%= error %>
+            </p>
+            <% } %>
+    </div>
+    <%- include("partials/footer.ejs") %>
