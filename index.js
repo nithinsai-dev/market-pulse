@@ -32,6 +32,12 @@ app.post("/price", async (req, res) => {
                     symbol,
                     price: null,
                     changePercentage: null,
+                    openPrice: null,
+                    highPrice: null,
+                    lowPrice: null,
+                    previousClose: null,
+                    volume: null,
+                    change: null,
                     error: "Stock not found or not supported"
                 });
             }
@@ -39,7 +45,13 @@ app.post("/price", async (req, res) => {
             res.render("price", {
                 symbol: symbol,
                 price: result["05. price"],
-                changePercentage: result["10. change percent"]
+                changePercentage: result["10. change percent"],
+                openPrice: result["02. open"],
+                highPrice: result["03. high"],
+                lowPrice: result["04. low"],
+                previousClose: result["08. previous close"],
+                volume: result["06. volume"],
+                change: result["09. change"]
             })
         }
         else {

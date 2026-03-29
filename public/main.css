@@ -3,11 +3,13 @@ body {
     margin: 0;
     background: black;
     color: white;
+    font-family: Arial, sans-serif;
 }
 
 footer {
     text-align: center;
     margin: 20px 0;
+    padding: 20px;
 }
 
 .market {
@@ -19,8 +21,8 @@ footer {
 }
 
 .heading {
-    text-align: center;
     margin: 20px 0;
+    text-align: center;
 }
 
 .container {
@@ -28,13 +30,206 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 80vh;
+    padding: 40px 20px;
+}
+
+.container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    max-width: 800px;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.container>p {
+    font-size: 1.2rem;
+    color: #aaa;
+    margin-bottom: 40px;
+    max-width: 600px;
+    text-align: center;
 }
 
 .form {
-    margin-top: 20px;
+    background: black;
+    border: 1px solid hsl(300, 12%, 97%);
+    box-shadow: 0 0 20px hsla(309, 73%, 61%, 0.3);
+    padding: 40px 50px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 500px;
+    text-align: left;
+}
+
+.form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form label {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form select,
+.form input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    background: #1a1a1a;
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: white;
+    box-sizing: border-box;
+}
+
+.form button {
+    padding: 14px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, hsl(300, 50%, 50%), hsl(270, 50%, 40%));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px hsla(309, 73%, 61%, 0.5);
+}
+
+.form button:active {
+    transform: translateY(0);
+}
+
+.results {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+    padding: 40px 20px;
 }
 
 .price-info {
+    grid-row: 1 / 3;
+    grid-column: 1 / 2;
+}
+
+.card1 {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+}
+
+.card2 {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+}
+
+.card {
+    background: black;
+    color: white;
+    border: 1px solid hsl(300, 12%, 97%);
+    padding: 30px;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+.card.positive-glow {
+    box-shadow: 0 0 25px hsla(122, 76%, 54%, 0.5);
+    border-color: hsl(122, 76%, 54%);
+}
+
+.card.negative-glow {
+    box-shadow: 0 0 25px hsla(0, 80%, 50%, 0.5);
+    border-color: hsl(0, 80%, 50%);
+}
+
+
+.price-info {
+    text-align: left;
+}
+
+.price-info h2 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
     text-align: center;
-    margin: 20px 0;
+}
+
+.price-info p {
+    font-size: 1.1rem;
+    margin: 15px 0;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    word-wrap: break-word;
+}
+
+.price-info p:last-of-type {
+    border-bottom: none;
+}
+
+.card1 h3,
+.card2 h2 {
+    font-size: 0.85rem;
+    color: #888;
+    margin: 0 0 8px 0;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card1 p,
+.card2 p {
+    font-size: 1.6rem;
+    margin: 0 0 25px 0;
+    font-weight: bold;
+    word-wrap: break-word;
+}
+
+.card1 h3:not(:first-child),
+.card2 h2:not(:first-child) {
+    margin-top: 20px;
+}
+
+.positive {
+    color: hsl(122, 76%, 54%);
+}
+
+.negative {
+    color: hsl(0, 80%, 50%);
+}
+
+@media (max-width: 768px) {
+    .container h1 {
+        font-size: 1.8rem;
+    }
+
+    .form {
+        padding: 30px 25px;
+    }
+
+    .results {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 15px;
+        padding: 20px 10px;
+    }
+
+    .price-info,
+    .card1,
+    .card2 {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .card {
+        padding: 25px;
+    }
 }

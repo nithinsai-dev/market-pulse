@@ -1,20 +1,65 @@
 <%- include("partials/header") %>
-    <div class="price-info">
-        <h2>Price Information:</h2>
-        <p><strong>Symbol : </strong>
-            <%= symbol %>
-        </p>
-        <p><strong>Price : </strong>
-            <%= price %>
-        </p>
-        <p><strong>Change percentage : </strong>
-            <%= changePercentage %>
-        </p>
+    <div class="container">
+        <div class="results">
+            <!-- Main Price Card -->
+            <div class="card price-info <%= parseFloat(changePercentage) >= 0 ? 'positive-glow' : 'negative-glow' %>">
+                <h2>Price Information</h2>
+                <p>
+                    <strong>Symbol:</strong>
+                    <%= symbol %>
+                </p>
+                <p>
+                    <strong>Price:</strong> $<%= price %>
+                </p>
+                <p>
+                    <strong>Change:</strong>
+                    <span class="<%= parseFloat(changePercentage) >= 0 ? 'positive' : 'negative' %>">
+                        <%= changePercentage %>%
+                    </span>
+                </p>
 
-        <% if (locals.error) { %>
-            <p style="color:red">
-                <%= error %>
-            </p>
-            <% } %>
+                <% if (locals.error) { %>
+                    <p style="color: red; margin-top: 20px;">
+                        <%= error %>
+                    </p>
+                    <% } %>
+            </div>
+
+            <!-- Card 1 - Open/Close/Volume -->
+            <div class="card card1">
+                <h3>Open Price</h3>
+                <p>
+                    <%= openPrice %>
+                </p>
+
+                <h3>Previous Close</h3>
+                <p>
+                    <%= previousClose %>
+                </p>
+
+                <h3>Volume</h3>
+                <p>
+                    <%= volume %>
+                </p>
+            </div>
+
+            <!-- Card 2 - High/Low/Change -->
+            <div class="card card2">
+                <h2>High</h2>
+                <p class="positive">
+                    <%= highPrice %>
+                </p>
+
+                <h2>Low</h2>
+                <p class="negative">
+                    <%= lowPrice %>
+                </p>
+
+                <h2>Change</h2>
+                <p class="<%= parseFloat(change) >= 0 ? 'positive' : 'negative' %>">
+                    <%= change %>
+                </p>
+            </div>
+        </div>
     </div>
     <%- include("partials/footer.ejs") %>
