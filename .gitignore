@@ -1,3 +1,15 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code
+.vscode/
+
+
+# Logs/temp
+*.tmp
+
 # Logs
 logs
 *.log
