@@ -5,8 +5,9 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
-const API_URL = "https://www.alphavantage.co/"
+const stock_API_URL = "https://www.alphavantage.co/"
 const apiKey = process.env.API_KEY;
+const crypto_API_URL = "https://api.binance.com/api/v3/ticker/24hr";
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
@@ -24,7 +25,7 @@ app.post("/price", async (req, res) => {
 
     try {
         if (type === "stock") {
-            const response = await axios.get(API_URL + `query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`);
+            const response = await axios.get(stock_API_URL + `query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`);
             const result = response.data["Global Quote"];
 
             if (!result || Object.keys(result).length === 0) {
@@ -55,22 +56,34 @@ app.post("/price", async (req, res) => {
             })
         }
         else {
-            const response = await axios.get(API_URL + `query?function=CURRENCY_EXCHANGE_RATE&from_currency=${symbol}&to_currency=USD&apikey=${apiKey}`);
-            const result = response.data["Realtime Currency Exchange Rate"];
+            const response = await axios.get(crypto_API_URL + `?symbol=${symbol}USDT`);
+            const result = response.data;
 
             if (!result || Object.keys(result).length === 0) {
                 return res.render("price", {
                     symbol,
                     price: null,
                     changePercentage: null,
+                    openPrice: null,
+                    highPrice: null,
+                    lowPrice: null,
+                    previousClose: null,
+                    volume: null,
+                    change: null,
                     error: "Crypto not supported"
                 });
             }
 
             res.render("price", {
                 symbol: symbol,
-                price: result["5. Exchange Rate"],
-                changePercentage: "N/A"
+                price: result["lastPrice"],
+                openPrice: result["openPrice"],
+                highPrice: result["highPrice"],
+                lowPrice: result["lowPrice"],
+                previousClose: result["prevClosePrice"],
+                volume: result["volume"],
+                change: result["priceChange"],
+                changePercentage: result["priceChangePercent"]
             })
         }
     } catch (error) {
